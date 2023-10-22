@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Monster Slayer</h1>
+    </header>
+    <div id="game">
+      <section id="monster" class="container">
+        <h2>Monster Health</h2>
+        <div class="healthbar">
+          <div class="healthbar__value" :style="calcMonsterStyle"></div>
+        </div>
+      </section>
+      <section id="player" class="container">
+        <h2>Your Health</h2>
+        <div class="healthbar">
+          <div class="healthbar__value" :style="calcPlayerStyle"></div>
+        </div>
+      </section>
+      <section id="log" class="container" v-show="Winner">
+        <ul v-show="playerHealth<=0 || monsterHealth<=0">
+          <li><h2>Game Over!</h2></li>
+          <li><h3>{{Winner}}</h3></li>
+          <li><button @click="restartGame">Restart Game</button></li>
+        </ul>
+      </section>
+      <section id="controls" v-show="playerHealth>0 &&monsterHealth>0">
+        <button @click="attackMonster">ATTACK</button>
+        <button @click="speciaAttack" :disabled="!canUseSpecial">
+          SPECIAL ATTACK
+        </button>
+        <button @click="heal">HEAL</button>
+        <button @click="surrender">SURRENDER</button>
+      </section>
+      <section id="log" class="container">
+        <h2>Battle Log</h2>
+        <ul>
+          <li v-for="move in playerMoves">
+            <h2>
+              Player Attack move : {{move.Pattack}} player Health:
+              {{move.Phealth}}
+            </h2>
+          </li>
+          <hr />
+          <li v-for="move in monsterMoves">
+            <h2>
+              Monst Attack move : {{move.Mattack}} Monster Health:
+              {{move.Mhealth}}
+            </h2>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>
