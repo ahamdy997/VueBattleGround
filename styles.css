@@ -5,7 +5,7 @@
 html {
   font-family: 'Jost', sans-serif;
 }
-
+[v-cloaked]{display:none;}
 body {
   margin: 0;
 }
