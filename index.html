@@ -12,11 +12,11 @@
     <script src="https://unpkg.com/vue@next" defer></script>
     <script src="app.js" defer></script>
   </head>
-  <body v-cloaked>
+  <body>
     <header>
       <h1>Monster Slayer</h1>
     </header>
-    <div id="game">
+    <div id="game" v-cloak>
       <section id="monster" class="container">
         <h2>Monster Health</h2>
         <div class="healthbar">
